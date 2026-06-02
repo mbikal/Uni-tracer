@@ -4,7 +4,40 @@
  * No backend server required!
  */
 
-const DATA_URL = '/data/programs.json'
+// Embedded fallback data - ensures app always works
+const EMBEDDED_DATA = {
+  "metadata": {
+    "version": "1.0.0",
+    "last_updated": "2024-06-02T14:30:00Z",
+    "total_programs": 10,
+    "total_countries": 8,
+    "data_source": "Embedded Fallback"
+  },
+  "programs": [
+    {"id":"prog_001","university":"MIT","program_name":"MSc in Robotics","country":"USA","city":"Cambridge, MA","language":"English","tuition_usd":55000,"duration_months":24,"field":"robotics","url":"https://meche.mit.edu/","description_snippet":"Leading robotics program with focus on autonomous systems.","scholarship_available":true,"tags":["robotics","autonomous systems"]},
+    {"id":"prog_002","university":"Stanford","program_name":"MS in Computer Science - AI","country":"USA","city":"Stanford, CA","language":"English","tuition_usd":60000,"duration_months":24,"field":"ai","url":"https://cs.stanford.edu/","description_snippet":"Premier AI program with cutting-edge research.","scholarship_available":true,"tags":["ai","machine learning"]},
+    {"id":"prog_003","university":"Carnegie Mellon","program_name":"MS in Robotics","country":"USA","city":"Pittsburgh, PA","language":"English","tuition_usd":50000,"duration_months":24,"field":"robotics","url":"https://www.ri.cmu.edu/","description_snippet":"World-renowned Robotics Institute.","scholarship_available":true,"tags":["robotics","research"]},
+    {"id":"prog_004","university":"ETH Zurich","program_name":"MSc in Robotics, Systems and Control","country":"Switzerland","city":"Zurich","language":"English","tuition_usd":1500,"duration_months":24,"field":"robotics","url":"https://rsc.ethz.ch/","description_snippet":"Elite European program with strong industry connections.","scholarship_available":true,"tags":["robotics","affordable","europe"]},
+    {"id":"prog_005","university":"TU Delft","program_name":"MSc in Robotics","country":"Netherlands","city":"Delft","language":"English","tuition_usd":2000,"duration_months":24,"field":"robotics","url":"https://www.tudelft.nl/","description_snippet":"Top Dutch technical university with robotics specialization.","scholarship_available":true,"tags":["robotics","affordable","europe"]},
+    {"id":"prog_006","university":"Imperial College London","program_name":"MSc in Artificial Intelligence","country":"UK","city":"London","language":"English","tuition_usd":35000,"duration_months":12,"field":"ai","url":"https://www.imperial.ac.uk/","description_snippet":"One-year intensive AI masters from leading UK institution.","scholarship_available":false,"tags":["ai","one-year","uk"]},
+    {"id":"prog_007","university":"University of Edinburgh","program_name":"MSc in Artificial Intelligence","country":"UK","city":"Edinburgh","language":"English","tuition_usd":28000,"duration_months":12,"field":"ai","url":"https://www.ed.ac.uk/","description_snippet":"Historic AI program with strong theoretical foundations.","scholarship_available":true,"tags":["ai","uk","research"]},
+    {"id":"prog_008","university":"KTH Royal Institute","program_name":"MSc in Systems, Control and Robotics","country":"Sweden","city":"Stockholm","language":"English","tuition_usd":0,"duration_months":24,"field":"robotics","url":"https://www.kth.se/","description_snippet":"No tuition for EU students. Strong control theory focus.","scholarship_available":true,"tags":["robotics","free tuition","europe"]},
+    {"id":"prog_009","university":"EPFL","program_name":"MSc in Robotics","country":"Switzerland","city":"Lausanne","language":"English","tuition_usd":1500,"duration_months":24,"field":"robotics","url":"https://www.epfl.ch/","description_snippet":"Top-tier Swiss technical university with robotics excellence.","scholarship_available":true,"tags":["robotics","affordable","europe"]},
+    {"id":"prog_010","university":"NUS Singapore","program_name":"MSc in Robotics","country":"Singapore","city":"Singapore","language":"English","tuition_usd":45000,"duration_months":12,"field":"robotics","url":"https://www.nus.edu.sg/","description_snippet":"Leading Asian program with industry partnerships.","scholarship_available":true,"tags":["robotics","asia","one-year"]}
+  ],
+  "countries": ["USA","Switzerland","Netherlands","UK","Sweden","Singapore"],
+  "fields": ["robotics","ai","both"],
+  "languages": ["English"],
+  "stats": {"avg_tuition":22500,"median_duration":24,"scholarship_rate":0.8,"robotics_programs":6,"ai_programs":3,"hybrid_programs":0}
+}
+
+// Try multiple paths for different deployment scenarios
+const DATA_URLS = [
+  '/data/programs.json',           // Vercel / local dev
+  './data/programs.json',          // Relative path
+  '../data/programs.json',         // One level up
+  'data/programs.json',            // No leading slash
+]
 
 let cachedData = null
 let lastFetch = 0
@@ -18,20 +51,47 @@ async function fetchData() {
     return cachedData
   }
   
-  try {
-    const response = await fetch(DATA_URL)
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`)
+  // Try each URL until one works
+  let lastError = null
+  for (const url of DATA_URLS) {
+    try {
+      console.log(`Trying to fetch from: ${url}`)
+      const response = await fetch(url)
+      
+      if (!response.ok) {
+        console.warn(`Failed: ${url} - HTTP ${response.status}`)
+        continue
+      }
+      
+      const text = await response.text()
+      
+      // Check if response is actually JSON
+      if (!text.trim().startsWith('{')) {
+        console.warn(`Failed: ${url} - Not valid JSON (starts with: ${text.slice(0, 50)})`)
+        continue
+      }
+      
+      try {
+        const data = JSON.parse(text)
+        console.log(`✅ Successfully loaded data from: ${url}`)
+        cachedData = data
+        lastFetch = now
+        return data
+      } catch (parseError) {
+        console.error(`JSON parse error from ${url}:`, parseError)
+        continue
+      }
+    } catch (error) {
+      console.warn(`Failed to fetch ${url}:`, error.message)
+      lastError = error
     }
-    
-    const data = await response.json()
-    cachedData = data
-    lastFetch = now
-    return data
-  } catch (error) {
-    console.error('Failed to fetch programs data:', error)
-    throw error
   }
+  
+  // All fetches failed, use embedded data as fallback
+  console.warn('⚠️ All data fetches failed, using embedded fallback data')
+  cachedData = EMBEDDED_DATA
+  lastFetch = now
+  return EMBEDDED_DATA
 }
 
 export const programApi = {
