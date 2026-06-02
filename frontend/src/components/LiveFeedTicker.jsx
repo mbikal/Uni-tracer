@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { programApi } from '../api/client'
 
 export function LiveFeedTicker() {
   const [updates, setUpdates] = useState([])
+  // eslint-disable-next-line no-unused-vars
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     loadRecentUpdates()

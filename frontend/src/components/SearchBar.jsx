@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { Search, Loader2, Sparkles } from 'lucide-react'
 
 export function SearchBar({ onSearch, loading }) {
