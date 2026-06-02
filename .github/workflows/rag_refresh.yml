@@ -79,19 +79,8 @@ jobs:
           echo "Refresh notification sent (if configured)"
         continue-on-error: true
       
-      - name: Create issue on failure
+      - name: Log failure
         if: failure()
-        uses: actions/create-an-issue@v3
-        with:
-          title: "⚠️ RAG Refresh Failed - ${{ github.run_id }}"
-          body: |
-            The automated RAG data refresh failed.
-            
-            **Workflow:** ${{ github.workflow }}
-            **Run ID:** ${{ github.run_id }}
-            **Timestamp:** ${{ github.event.head_commit.timestamp }}
-            
-            Please check the logs for details.
-          labels: bug, automated
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "⚠️ RAG Refresh Failed - Check logs for details"
+          echo "Run ID: ${{ github.run_id }}"
