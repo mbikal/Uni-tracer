@@ -1,7 +1,9 @@
-name: Deploy to GitHub Pages
+name: Build and Test
 
 on:
   push:
+    branches: [main]
+  pull_request:
     branches: [main]
   workflow_dispatch:
 
@@ -9,17 +11,8 @@ env:
   NODE_VERSION: '20'
   PYTHON_VERSION: '3.11'
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: 'pages'
-  cancel-in-progress: false
-
 jobs:
-  # Optional: Test backend (can be disabled for pure static hosting)
+  # Test backend
   test-backend:
     runs-on: ubuntu-latest
     defaults:
@@ -42,18 +35,14 @@ jobs:
       - name: Run tests
         run: pytest --cov=./ --cov-report=xml || true
 
-  # Build and deploy static site with JSON data
-  build-and-deploy:
+  # Test and build frontend
+  build-frontend:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       
-      # Generate JSON data from seed (or use existing data/programs.json)
+      # Generate JSON data
       - name: Set up Python for data generation
         uses: actions/setup-python@v5
         with:
@@ -91,14 +80,12 @@ jobs:
         run: |
           mkdir -p ./frontend/dist/data
           cp ./data/programs.json ./frontend/dist/data/programs.json
-          echo "✅ Data copied to dist/"
+          echo "✅ Build complete - ready for Vercel"
           ls -la ./frontend/dist/
       
-      - name: Upload to GitHub Pages
-        uses: actions/upload-pages-artifact@v3
+      # Upload build artifact for inspection
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
         with:
+          name: frontend-build
           path: ./frontend/dist
-      
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
