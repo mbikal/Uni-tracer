@@ -50,7 +50,6 @@ async function fetchData() {
   }
   
   // Try each URL until one works
-  let lastError = null
   for (const url of DATA_URLS) {
     try {
       console.log(`Trying to fetch from: ${url}`)
@@ -81,7 +80,7 @@ async function fetchData() {
       }
     } catch (error) {
       console.warn(`Failed to fetch ${url}:`, error.message)
-      lastError = error
+      // Continue to next URL
     }
   }
   
@@ -296,11 +295,11 @@ function buildComparison(programs) {
     programs,
     rows,
     highlights,
-    summary: generateComparisonSummary(programs, highlights)
+    summary: generateComparisonSummary(programs)
   }
 }
 
-function generateComparisonSummary(programs, highlights) {
+function generateComparisonSummary(programs) {
   const parts = []
   
   const tuitions = programs.map(p => p.tuition_usd).filter(t => t !== null)
