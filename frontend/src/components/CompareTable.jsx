@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { X, GitCompare, Loader2, ExternalLink, Check, AlertCircle } from 'lucide-react'
 import { programApi } from '../api/client'
 
@@ -15,6 +15,7 @@ export function CompareTable({ programIds, onClose, onRemove }) {
 
   useEffect(() => {
     loadComparison()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [programIds])
 
   const loadComparison = async () => {
@@ -51,13 +52,14 @@ export function CompareTable({ programIds, onClose, onRemove }) {
           <span className="data-mono">${value.toLocaleString()}</span>
         )
       
-      case 'duration':
+      case 'duration': {
         const years = value / 12
         return (
           <span className="data-mono">
             {years === 1 ? '1 year' : `${years} years`}
           </span>
         )
+      }
       
       case 'link':
         return (

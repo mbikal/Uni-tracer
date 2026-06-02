@@ -1,4 +1,4 @@
-import React from 'react'
+// React import not needed in React 18 with JSX transform
 import { X, Heart, ExternalLink, Trash2 } from 'lucide-react'
 
 const COUNTRY_FLAGS = {

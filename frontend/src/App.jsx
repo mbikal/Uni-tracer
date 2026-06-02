@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { SearchBar } from './components/SearchBar'
 import { FilterPanel } from './components/FilterPanel'
 import { ProgramCard } from './components/ProgramCard'
@@ -30,11 +30,13 @@ function App() {
   useEffect(() => {
     loadPrograms()
     loadStats()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Reload when filters change
   useEffect(() => {
     loadPrograms()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters])
 
   const loadPrograms = async () => {

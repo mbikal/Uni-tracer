@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Filter, X, ChevronDown, ChevronUp } from 'lucide-react'
-import { programApi } from '../api/client'
+import { useState } from 'react'
+import { Filter, ChevronDown, ChevronUp } from 'lucide-react'
 
 const COUNTRIES = [
   'USA', 'UK', 'Switzerland', 'Netherlands', 'Sweden', 

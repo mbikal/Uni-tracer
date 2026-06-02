@@ -1,9 +1,8 @@
-import React, { useState, useCallback } from 'react'
+import { useState } from 'react'
 import { Search, Loader2, Sparkles } from 'lucide-react'
 
 export function SearchBar({ onSearch, loading }) {
   const [query, setQuery] = useState('')
-  const [debouncedSearch, setDebouncedSearch] = useState(null)
 
   const handleSubmit = useCallback((e) => {
     e.preventDefault()
@@ -48,7 +47,7 @@ export function SearchBar({ onSearch, loading }) {
       </div>
       
       <p className="mt-2 text-xs text-navy-600">
-        Try: "robotics in Germany under $10k" or "AI masters with scholarships in USA"
+        Try: &quot;robotics in Germany under $10k&quot; or &quot;AI masters with scholarships in USA&quot;
       </p>
     </form>
   )
