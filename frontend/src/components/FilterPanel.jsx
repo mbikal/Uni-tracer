@@ -2,8 +2,7 @@ import { useState } from 'react'
 import { Filter, ChevronDown, ChevronUp } from 'lucide-react'
 
 const COUNTRIES = [
-  'USA', 'UK', 'Switzerland', 'Netherlands', 'Sweden', 
-  'Germany', 'Canada', 'Singapore', 'Australia', 'Italy', 'South Korea'
+  'Germany', 'Italy', 'Spain', 'Sweden', 'UK', 'USA'
 ]
 
 const LANGUAGES = ['English', 'German', 'French', 'Dutch', 'Swedish']

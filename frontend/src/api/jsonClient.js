@@ -8,27 +8,25 @@
 const EMBEDDED_DATA = {
   "metadata": {
     "version": "1.0.0",
-    "last_updated": "2024-06-02T14:30:00Z",
-    "total_programs": 10,
-    "total_countries": 8,
+    "last_updated": "2024-06-02T20:00:00Z",
+    "total_programs": 8,
+    "total_countries": 6,
     "data_source": "Embedded Fallback"
   },
   "programs": [
     {"id":"prog_001","university":"MIT","program_name":"MSc in Robotics","country":"USA","city":"Cambridge, MA","language":"English","tuition_usd":55000,"duration_months":24,"field":"robotics","url":"https://meche.mit.edu/","description_snippet":"Leading robotics program with focus on autonomous systems.","scholarship_available":true,"tags":["robotics","autonomous systems"]},
     {"id":"prog_002","university":"Stanford","program_name":"MS in Computer Science - AI","country":"USA","city":"Stanford, CA","language":"English","tuition_usd":60000,"duration_months":24,"field":"ai","url":"https://cs.stanford.edu/","description_snippet":"Premier AI program with cutting-edge research.","scholarship_available":true,"tags":["ai","machine learning"]},
     {"id":"prog_003","university":"Carnegie Mellon","program_name":"MS in Robotics","country":"USA","city":"Pittsburgh, PA","language":"English","tuition_usd":50000,"duration_months":24,"field":"robotics","url":"https://www.ri.cmu.edu/","description_snippet":"World-renowned Robotics Institute.","scholarship_available":true,"tags":["robotics","research"]},
-    {"id":"prog_004","university":"ETH Zurich","program_name":"MSc in Robotics, Systems and Control","country":"Switzerland","city":"Zurich","language":"English","tuition_usd":1500,"duration_months":24,"field":"robotics","url":"https://rsc.ethz.ch/","description_snippet":"Elite European program with strong industry connections.","scholarship_available":true,"tags":["robotics","affordable","europe"]},
-    {"id":"prog_005","university":"TU Delft","program_name":"MSc in Robotics","country":"Netherlands","city":"Delft","language":"English","tuition_usd":2000,"duration_months":24,"field":"robotics","url":"https://www.tudelft.nl/","description_snippet":"Top Dutch technical university with robotics specialization.","scholarship_available":true,"tags":["robotics","affordable","europe"]},
-    {"id":"prog_006","university":"Imperial College London","program_name":"MSc in Artificial Intelligence","country":"UK","city":"London","language":"English","tuition_usd":35000,"duration_months":12,"field":"ai","url":"https://www.imperial.ac.uk/","description_snippet":"One-year intensive AI masters from leading UK institution.","scholarship_available":false,"tags":["ai","one-year","uk"]},
-    {"id":"prog_007","university":"University of Edinburgh","program_name":"MSc in Artificial Intelligence","country":"UK","city":"Edinburgh","language":"English","tuition_usd":28000,"duration_months":12,"field":"ai","url":"https://www.ed.ac.uk/","description_snippet":"Historic AI program with strong theoretical foundations.","scholarship_available":true,"tags":["ai","uk","research"]},
-    {"id":"prog_008","university":"KTH Royal Institute","program_name":"MSc in Systems, Control and Robotics","country":"Sweden","city":"Stockholm","language":"English","tuition_usd":0,"duration_months":24,"field":"robotics","url":"https://www.kth.se/","description_snippet":"No tuition for EU students. Strong control theory focus.","scholarship_available":true,"tags":["robotics","free tuition","europe"]},
-    {"id":"prog_009","university":"EPFL","program_name":"MSc in Robotics","country":"Switzerland","city":"Lausanne","language":"English","tuition_usd":1500,"duration_months":24,"field":"robotics","url":"https://www.epfl.ch/","description_snippet":"Top-tier Swiss technical university with robotics excellence.","scholarship_available":true,"tags":["robotics","affordable","europe"]},
-    {"id":"prog_010","university":"NUS Singapore","program_name":"MSc in Robotics","country":"Singapore","city":"Singapore","language":"English","tuition_usd":45000,"duration_months":12,"field":"robotics","url":"https://www.nus.edu.sg/","description_snippet":"Leading Asian program with industry partnerships.","scholarship_available":true,"tags":["robotics","asia","one-year"]}
+    {"id":"prog_004","university":"Imperial College London","program_name":"MSc in Artificial Intelligence","country":"UK","city":"London","language":"English","tuition_usd":35000,"duration_months":12,"field":"ai","url":"https://www.imperial.ac.uk/","description_snippet":"One-year intensive AI masters from leading UK institution.","scholarship_available":false,"tags":["ai","one-year","uk"]},
+    {"id":"prog_005","university":"University of Edinburgh","program_name":"MSc in Artificial Intelligence","country":"UK","city":"Edinburgh","language":"English","tuition_usd":28000,"duration_months":12,"field":"ai","url":"https://www.ed.ac.uk/","description_snippet":"Historic AI program with strong theoretical foundations.","scholarship_available":true,"tags":["ai","uk","research"]},
+    {"id":"prog_006","university":"KTH Royal Institute","program_name":"MSc in Systems, Control and Robotics","country":"Sweden","city":"Stockholm","language":"English","tuition_usd":0,"duration_months":24,"field":"robotics","url":"https://www.kth.se/","description_snippet":"No tuition for EU students. Strong control theory focus.","scholarship_available":true,"tags":["robotics","free tuition","europe"]},
+    {"id":"prog_007","university":"TU Munich","program_name":"MSc in Robotics, Cognition, Intelligence","country":"Germany","city":"Munich","language":"English","tuition_usd":0,"duration_months":24,"field":"both","url":"https://www.tum.de/","description_snippet":"Elite German technical university. No tuition for all students.","scholarship_available":true,"tags":["robotics","ai","free tuition"]},
+    {"id":"prog_008","university":"Politecnico di Milano","program_name":"MSc in Automation and Control","country":"Italy","city":"Milan","language":"English","tuition_usd":4000,"duration_months":24,"field":"robotics","url":"https://www.polimi.it/","description_snippet":"Top Italian technical university with automation focus.","scholarship_available":true,"tags":["robotics","affordable","italy"]}
   ],
-  "countries": ["USA","Switzerland","Netherlands","UK","Sweden","Singapore"],
+  "countries": ["Germany","Italy","Spain","Sweden","UK","USA"],
   "fields": ["robotics","ai","both"],
   "languages": ["English"],
-  "stats": {"avg_tuition":22500,"median_duration":24,"scholarship_rate":0.8,"robotics_programs":6,"ai_programs":3,"hybrid_programs":0}
+  "stats": {"avg_tuition":29000,"median_duration":24,"scholarship_rate":0.75,"robotics_programs":5,"ai_programs":3,"hybrid_programs":1}
 }
 
 // Try multiple paths for different deployment scenarios
