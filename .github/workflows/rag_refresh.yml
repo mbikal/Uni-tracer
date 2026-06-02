@@ -36,27 +36,18 @@ jobs:
         run: |
           pip install -r requirements.txt
       
-      - name: Run scraper
-        working-directory: ./backend
+      - name: Generate JSON data
         run: |
-          python -m rag.scraper
-        continue-on-error: true
-      
-      - name: Run embedder
-        working-directory: ./backend
-        run: |
-          python -m rag.embedder
-        continue-on-error: true
+          # Use seed data to generate fresh JSON (skips web scraping in CI)
+          python3 scripts/scrape_to_json.py --seed
       
       - name: Commit updated data
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           
-          # Add database changes
-          git add backend/db/programs.db || true
-          git add chroma_data/ || true
-          git add rag_data/ || true
+          # Add JSON data changes
+          git add data/programs.json || true
           
           # Only commit if there are changes
           if git diff --staged --quiet; then
