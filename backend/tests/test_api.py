@@ -7,6 +7,15 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from app import create_app
 
+@pytest.fixture(scope='session', autouse=True)
+def cleanup_test_db():
+    """Cleanup test database after all tests."""
+    yield
+    # Cleanup after all tests
+    test_db = '/tmp/masters_tracker_test.db'
+    if os.path.exists(test_db):
+        os.remove(test_db)
+
 @pytest.fixture
 def app():
     """Create application for testing."""
@@ -30,7 +39,7 @@ def test_index(client):
     response = client.get('/')
     assert response.status_code == 200
     data = response.get_json()
-    assert 'Masters Tracker' in data['name']
+    assert 'Global Masters' in data['name']
     assert 'endpoints' in data
 
 def test_get_programs(client):
@@ -76,10 +85,13 @@ def test_search_missing_query(client):
 def test_search_with_query(client):
     """Test search endpoint with valid query."""
     response = client.post('/api/search', json={'query': 'robotics'})
+    # Should return 200 with keyword fallback even if ChromaDB unavailable
     assert response.status_code == 200
     data = response.get_json()
     assert data['success'] is True
     assert 'results' in data
+    # Search type can be 'semantic' or 'keyword' depending on ChromaDB availability
+    assert 'search_type' in data
 
 def test_compare_missing_ids(client):
     """Test compare endpoint with missing IDs."""

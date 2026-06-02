@@ -21,7 +21,11 @@ def create_app(config_name='default'):
     config[config_name].init_app(app)
     
     # Enable CORS
-    CORS(app, origins=app.config['CORS_ORIGINS'])
+    CORS(app, 
+         origins=app.config['CORS_ORIGINS'],
+         supports_credentials=True,
+         allow_headers=['Content-Type', 'Authorization', 'X-Refresh-Secret'],
+         methods=['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'])
     
     # Initialize database
     with app.app_context():
@@ -56,4 +60,4 @@ def create_app(config_name='default'):
 if __name__ == '__main__':
     env = os.environ.get('FLASK_ENV', 'development')
     app = create_app(env)
-    app.run(host='0.0.0.0', port=5000, debug=app.config.get('DEBUG', True))
+    app.run(host='0.0.0.0', port=5001, debug=app.config.get('DEBUG', True))

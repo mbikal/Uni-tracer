@@ -45,7 +45,8 @@ class ProductionConfig(Config):
 class TestingConfig(Config):
     DEBUG = True
     TESTING = True
-    DB_PATH = ':memory:'
+    # Use temp file instead of :memory: so connections persist across requests
+    DB_PATH = '/tmp/masters_tracker_test.db'
 
 config = {
     'development': DevelopmentConfig,
