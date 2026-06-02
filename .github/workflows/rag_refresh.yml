@@ -1,0 +1,97 @@
+name: RAG Data Refresh
+
+on:
+  schedule:
+    # Run daily at 02:00 UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+env:
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  refresh-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          # Needed to commit changes back
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Cache pip packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+      
+      - name: Install dependencies
+        working-directory: ./backend
+        run: |
+          pip install -r requirements.txt
+      
+      - name: Run scraper
+        working-directory: ./backend
+        run: |
+          python -m rag.scraper
+        continue-on-error: true
+      
+      - name: Run embedder
+        working-directory: ./backend
+        run: |
+          python -m rag.embedder
+        continue-on-error: true
+      
+      - name: Commit updated data
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          # Add database changes
+          git add backend/db/programs.db || true
+          git add chroma_data/ || true
+          git add rag_data/ || true
+          
+          # Only commit if there are changes
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "🤖 Automated data refresh - $(date -u '+%Y-%m-%d %H:%M UTC')"
+            git push
+          fi
+        continue-on-error: true
+      
+      - name: Notify API refresh
+        run: |
+          # Trigger backend to reload data if deployed
+          # Uncomment and configure based on your deployment
+          # curl -X POST "${{ secrets.API_REFRESH_URL }}" \
+          #   -H "X-Refresh-Secret: ${{ secrets.REFRESH_SECRET }}" \
+          #   -H "Content-Type: application/json" \
+          #   -d '{"async": false}' || true
+          
+          echo "Refresh notification sent (if configured)"
+        continue-on-error: true
+      
+      - name: Create issue on failure
+        if: failure()
+        uses: actions/create-an-issue@v3
+        with:
+          title: "⚠️ RAG Refresh Failed - ${{ github.run_id }}"
+          body: |
+            The automated RAG data refresh failed.
+            
+            **Workflow:** ${{ github.workflow }}
+            **Run ID:** ${{ github.run_id }}
+            **Timestamp:** ${{ github.event.head_commit.timestamp }}
+            
+            Please check the logs for details.
+          labels: bug, automated
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
