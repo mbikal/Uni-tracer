@@ -7,7 +7,9 @@ import { CompareTable } from './components/CompareTable'
 import { LiveFeedTicker } from './components/LiveFeedTicker'
 import { useFavorites } from './hooks/useFavorites'
 import { useFilters } from './hooks/useFilters'
-import { programApi } from './api/client'
+// Use JSON client for static hosting (GitHub Pages)
+// Switch to './api/client' if using backend API
+import { programApi } from './api/jsonClient'
 import { Loader2, Database, Globe, Heart, GitCompare, Sparkles } from 'lucide-react'
 
 function App() {

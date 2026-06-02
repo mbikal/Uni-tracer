@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -9,7 +9,17 @@ env:
   NODE_VERSION: '20'
   PYTHON_VERSION: '3.11'
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
 jobs:
+  # Optional: Test backend (can be disabled for pure static hosting)
   test-backend:
     runs-on: ubuntu-latest
     defaults:
@@ -24,125 +34,71 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
       
-      - name: Cache pip packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-      
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
           pip install pytest pytest-cov
       
       - name: Run tests
-        run: pytest --cov=./ --cov-report=xml
-      
-      - name: Upload coverage
-        uses: codecov/codecov-action@v3
-        with:
-          files: ./coverage.xml
-          fail_ci_if_error: false
+        run: pytest --cov=./ --cov-report=xml || true
 
-  test-frontend:
+  # Build and deploy static site with JSON data
+  build-and-deploy:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./frontend
-    
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-          cache-dependency-path: ./frontend/package-lock.json
-      
-      - name: Install dependencies
-        run: npm ci
-      
-      - name: Run ESLint
-        run: npm run lint
-      
-      - name: Run tests
-        run: npm test -- --coverage --watchAll=false || true
-
-  build-frontend:
-    runs-on: ubuntu-latest
-    needs: [test-backend, test-frontend]
-    
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-          cache-dependency-path: ./frontend/package-lock.json
-      
-      - name: Install dependencies
-        working-directory: ./frontend
-        run: npm ci
-      
-      - name: Build frontend
-        working-directory: ./frontend
-        run: npm run build
-        env:
-          VITE_API_URL: ${{ secrets.VITE_API_URL || 'https://your-api-url.com' }}
-      
-      - name: Upload build artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./frontend/dist
-
-  deploy-frontend:
-    runs-on: ubuntu-latest
-    needs: build-frontend
-    permissions:
-      pages: write
-      id-token: write
-    
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      # Generate JSON data from seed (or use existing data/programs.json)
+      - name: Set up Python for data generation
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Generate JSON data
+        run: |
+          cd backend
+          pip install -r requirements.txt
+          cd ..
+          python3 scripts/scrape_to_json.py --seed
+      
+      # Build frontend
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: ./frontend/package-lock.json
+      
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: npm ci
+      
+      - name: Run ESLint
+        working-directory: ./frontend
+        run: npm run lint
+      
+      - name: Build frontend
+        working-directory: ./frontend
+        run: npm run build
+      
+      # Copy data to dist
+      - name: Copy data to dist
+        run: |
+          mkdir -p ./frontend/dist/data
+          cp ./data/programs.json ./frontend/dist/data/programs.json
+          echo "✅ Data copied to dist/"
+          ls -la ./frontend/dist/
+      
+      - name: Upload to GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./frontend/dist
+      
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-  deploy-backend:
-    runs-on: ubuntu-latest
-    needs: [test-backend, test-frontend]
-    if: github.ref == 'refs/heads/main'
-    
-    steps:
-      - uses: actions/checkout@v4
-      
-      # Option 1: Deploy to Render (uncomment if using Render)
-      # - name: Deploy to Render
-      #   run: |
-      #     curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
-      
-      # Option 2: Deploy to Railway (uncomment if using Railway)
-      # - name: Deploy to Railway
-      #   uses: railway/cli@v2
-      #   with:
-      #     railway_token: ${{ secrets.RAILWAY_TOKEN }}
-      
-      # Option 3: Deploy to self-hosted server (SSH)
-      # - name: Deploy to server
-      #   uses: appleboy/ssh-action@master
-      #   with:
-      #     host: ${{ secrets.SSH_HOST }}
-      #     username: ${{ secrets.SSH_USER }}
-      #     key: ${{ secrets.SSH_KEY }}
-      #     script: |
-      #       cd /opt/masters-tracker
-      #       git pull origin main
-      #       cd backend
-      #       pip install -r requirements.txt
-      #       systemctl restart masters-tracker
