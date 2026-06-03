@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && npm run copy:data",
-    "copy:data": "mkdir -p dist/data && cp ../data/programs.json dist/data/programs.json",
+    "copy:data": "mkdir -p dist/data && (cp ../data/programs.json dist/data/programs.json 2>/dev/null || echo 'Data copy skipped')",
+    "vercel-build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .js,.jsx",
     "lint:fix": "eslint . --ext .js,.jsx --fix"
