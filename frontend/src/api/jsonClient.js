@@ -31,9 +31,8 @@ const EMBEDDED_DATA = {
 
 // Try multiple paths for different deployment scenarios
 const DATA_URLS = [
-  '/data/programs.json',           // Vercel / local dev
+  '/data/programs.json',           // Vite public folder (dev & production)
   './data/programs.json',          // Relative path
-  '../data/programs.json',         // One level up
   'data/programs.json',            // No leading slash
 ]
 

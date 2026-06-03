@@ -5,8 +5,25 @@ import path from 'path'
 import { copyFileSync, mkdirSync } from 'fs'
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
+export default defineConfig(({ command }) => ({
+  plugins: [
+    react(),
+    {
+      name: 'copy-data-plugin',
+      buildStart() {
+        // Copy data file to public folder for both dev and build
+        try {
+          const src = '../data/programs.json'
+          const dest = './public/data/programs.json'
+          mkdirSync('./public/data', { recursive: true })
+          copyFileSync(src, dest)
+          console.log('✅ Copied data/programs.json to public/data/')
+        } catch (e) {
+          console.log('Note: data copy issue:', e.message)
+        }
+      }
+    }
+  ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -30,20 +47,5 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: true,
-    // Copy data folder to dist after build
-    rollupOptions: {
-      plugins: [{
-        name: 'copy-data',
-        closeBundle() {
-          try {
-            mkdirSync('../dist/data', { recursive: true })
-            copyFileSync('../data/programs.json', '../dist/data/programs.json')
-            console.log('✅ Copied data/programs.json to dist/')
-          } catch (e) {
-            console.log('Note: data copy skipped in dev mode')
-          }
-        }
-      }]
-    }
   },
-})
+}))
