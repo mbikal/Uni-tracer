@@ -21,7 +21,8 @@ export function ProgramCard({
   isFavorite, 
   isInCompare,
   onToggleFavorite, 
-  onToggleCompare 
+  onToggleCompare,
+  onClick 
 }) {
   const flag = COUNTRY_FLAGS[program.country] || '🌍'
   
@@ -52,8 +53,9 @@ export function ProgramCard({
 
   return (
     <div 
-      className="card-gradient rounded-xl p-5 transition-all duration-300 hover:scale-[1.02] animate-fade-in"
+      className="card-gradient rounded-xl p-5 transition-all duration-300 hover:scale-[1.02] animate-fade-in cursor-pointer"
       style={{ animationDelay: `${index * 50}ms` }}
+      onClick={onClick}
     >
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
@@ -75,7 +77,7 @@ export function ProgramCard({
         </div>
         
         {/* Actions */}
-        <div className="flex items-center gap-2 ml-2">
+        <div className="flex items-center gap-2 ml-2" onClick={(e) => e.stopPropagation()}>
           <button
             onClick={onToggleFavorite}
             className={`p-2 rounded-lg transition-all duration-200 ${
@@ -158,15 +160,9 @@ export function ProgramCard({
           Updated: {new Date(program.last_updated).toLocaleDateString()}
         </span>
         
-        <a
-          href={program.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-1 text-sm link-cyan"
-        >
-          Visit Website
-          <ExternalLink className="w-3 h-3" />
-        </a>
+        <span className="text-xs text-cyan-400">
+          Click for details →
+        </span>
       </div>
     </div>
   )

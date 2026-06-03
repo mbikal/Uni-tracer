@@ -5,6 +5,7 @@ import { ProgramCard } from './components/ProgramCard'
 import { FavoritesDrawer } from './components/FavoritesDrawer'
 import { CompareTable } from './components/CompareTable'
 import { LiveFeedTicker } from './components/LiveFeedTicker'
+import { ProgramDetailModal } from './components/ProgramDetailModal'
 import { useFavorites } from './hooks/useFavorites'
 import { useFilters } from './hooks/useFilters'
 // Use JSON client for static hosting (GitHub Pages)
@@ -27,6 +28,7 @@ function App() {
   const [compareList, setCompareList] = useState([])
   const [showCompare, setShowCompare] = useState(false)
   const [showFavorites, setShowFavorites] = useState(false)
+  const [selectedProgram, setSelectedProgram] = useState(null)
 
   // Load initial programs
   useEffect(() => {
@@ -261,6 +263,7 @@ function App() {
                           : addFavorite(program)
                       }
                       onToggleCompare={() => toggleCompare(program.id)}
+                      onClick={() => setSelectedProgram(program)}
                     />
                   ))}
                 </div>
@@ -285,6 +288,14 @@ function App() {
           programIds={compareList}
           onClose={() => setShowCompare(false)}
           onRemove={toggleCompare}
+        />
+      )}
+
+      {/* Program Detail Modal with Scholarship & Roadmap */}
+      {selectedProgram && (
+        <ProgramDetailModal
+          program={selectedProgram}
+          onClose={() => setSelectedProgram(null)}
         />
       )}
     </div>
