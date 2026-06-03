@@ -1,10 +1,10 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "last_updated": "2024-06-02T20:00:00Z",
-    "total_programs": 8,
+    "last_updated": "2026-06-03T10:05:00.914740",
+    "total_programs": 10,
     "total_countries": 6,
-    "data_source": "RAG Pipeline - Filtered Universities"
+    "data_source": "Seed Data (Manual Curation)"
   },
   "programs": [
     {
@@ -18,12 +18,15 @@
       "duration_months": 24,
       "field": "robotics",
       "url": "https://meche.mit.edu/",
-      "last_updated": "2024-06-01T10:00:00Z",
-      "description_snippet": "Leading robotics program with focus on autonomous systems and mechanical engineering.",
+      "last_updated": "2026-06-03T10:05:00.914693",
+      "description_snippet": "Leading robotics program with focus on autonomous systems.",
       "application_deadline": "2024-12-15",
-      "entry_requirements": "Bachelor's in engineering, GRE scores, TOEFL/IELTS",
-      "scholarship_available": true,
-      "tags": ["autonomous systems", "mechanical engineering", "research-intensive"]
+      "entry_requirements": null,
+      "scholarship_available": false,
+      "tags": [
+        "two-year",
+        "robotics"
+      ]
     },
     {
       "id": "prog_002",
@@ -36,12 +39,15 @@
       "duration_months": 24,
       "field": "ai",
       "url": "https://cs.stanford.edu/",
-      "last_updated": "2024-06-01T11:00:00Z",
-      "description_snippet": "Premier AI program with cutting-edge research in machine learning and NLP.",
+      "last_updated": "2026-06-03T10:05:00.914705",
+      "description_snippet": "Premier AI program with research in machine learning and robotics.",
       "application_deadline": "2024-12-01",
-      "entry_requirements": "Strong CS background, research experience preferred",
-      "scholarship_available": true,
-      "tags": ["machine learning", "NLP", "Silicon Valley"]
+      "entry_requirements": null,
+      "scholarship_available": false,
+      "tags": [
+        "two-year",
+        "artificial intelligence"
+      ]
     },
     {
       "id": "prog_003",
@@ -54,15 +60,62 @@
       "duration_months": 24,
       "field": "robotics",
       "url": "https://www.ri.cmu.edu/",
-      "last_updated": "2024-06-01T12:00:00Z",
-      "description_snippet": "World-renowned Robotics Institute with interdisciplinary approach.",
+      "last_updated": "2026-06-03T10:05:00.914709",
+      "description_snippet": "World-renowned robotics institute with interdisciplinary approach.",
       "application_deadline": "2025-01-15",
-      "entry_requirements": "Engineering background, programming skills",
-      "scholarship_available": true,
-      "tags": ["interdisciplinary", "research-heavy", "industry partnerships"]
+      "entry_requirements": null,
+      "scholarship_available": false,
+      "tags": [
+        "two-year",
+        "robotics"
+      ]
     },
     {
       "id": "prog_004",
+      "university": "ETH Zurich",
+      "program_name": "MSc in Robotics, Systems and Control",
+      "country": "Switzerland",
+      "city": "Zurich",
+      "language": "English",
+      "tuition_usd": 1500,
+      "duration_months": 24,
+      "field": "robotics",
+      "url": "https://rsc.ethz.ch/",
+      "last_updated": "2026-06-03T10:05:00.914711",
+      "description_snippet": "Elite European program with strong industry connections.",
+      "application_deadline": "2024-12-20",
+      "entry_requirements": null,
+      "scholarship_available": true,
+      "tags": [
+        "affordable",
+        "two-year",
+        "robotics"
+      ]
+    },
+    {
+      "id": "prog_005",
+      "university": "TU Delft",
+      "program_name": "MSc in Robotics",
+      "country": "Netherlands",
+      "city": "Delft",
+      "language": "English",
+      "tuition_usd": 2000,
+      "duration_months": 24,
+      "field": "robotics",
+      "url": "https://www.tudelft.nl/",
+      "last_updated": "2026-06-03T10:05:00.914713",
+      "description_snippet": "Top Dutch technical university with robotics specialization.",
+      "application_deadline": "2025-01-31",
+      "entry_requirements": null,
+      "scholarship_available": true,
+      "tags": [
+        "affordable",
+        "two-year",
+        "robotics"
+      ]
+    },
+    {
+      "id": "prog_006",
       "university": "Imperial College London",
       "program_name": "MSc in Artificial Intelligence",
       "country": "UK",
@@ -72,15 +125,18 @@
       "duration_months": 12,
       "field": "ai",
       "url": "https://www.imperial.ac.uk/",
-      "last_updated": "2024-06-01T15:00:00Z",
+      "last_updated": "2026-06-03T10:05:00.914715",
       "description_snippet": "One-year intensive AI masters from leading UK institution.",
       "application_deadline": "2024-11-30",
-      "entry_requirements": "CS or math background, programming experience",
+      "entry_requirements": null,
       "scholarship_available": false,
-      "tags": ["one-year", "London", "industry-focused"]
+      "tags": [
+        "one-year",
+        "artificial intelligence"
+      ]
     },
     {
-      "id": "prog_005",
+      "id": "prog_007",
       "university": "University of Edinburgh",
       "program_name": "MSc in Artificial Intelligence",
       "country": "UK",
@@ -90,16 +146,19 @@
       "duration_months": 12,
       "field": "ai",
       "url": "https://www.ed.ac.uk/",
-      "last_updated": "2024-06-01T16:00:00Z",
+      "last_updated": "2026-06-03T10:05:00.914717",
       "description_snippet": "Historic AI program with strong theoretical foundations.",
       "application_deadline": "2025-03-31",
-      "entry_requirements": "Informatics degree, programming skills",
-      "scholarship_available": true,
-      "tags": ["theoretical AI", "research", "Scotland"]
+      "entry_requirements": null,
+      "scholarship_available": false,
+      "tags": [
+        "one-year",
+        "artificial intelligence"
+      ]
     },
     {
-      "id": "prog_006",
-      "university": "KTH Royal Institute of Technology",
+      "id": "prog_008",
+      "university": "KTH Royal Institute",
       "program_name": "MSc in Systems, Control and Robotics",
       "country": "Sweden",
       "city": "Stockholm",
@@ -108,59 +167,83 @@
       "duration_months": 24,
       "field": "robotics",
       "url": "https://www.kth.se/",
-      "last_updated": "2024-06-01T17:00:00Z",
-      "description_snippet": "No tuition for EU students. Strong focus on control theory and automation.",
+      "last_updated": "2026-06-03T10:05:00.914723",
+      "description_snippet": "No tuition for EU students. Strong control theory focus.",
       "application_deadline": "2025-01-15",
-      "entry_requirements": "Engineering background, control theory basics",
+      "entry_requirements": null,
       "scholarship_available": true,
-      "tags": ["free tuition EU", "control theory", "automation"]
+      "tags": [
+        "free tuition",
+        "two-year",
+        "robotics"
+      ]
     },
     {
-      "id": "prog_007",
-      "university": "Technical University of Munich",
-      "program_name": "MSc in Robotics, Cognition, Intelligence",
-      "country": "Germany",
-      "city": "Munich",
+      "id": "prog_009",
+      "university": "EPFL",
+      "program_name": "MSc in Robotics",
+      "country": "Switzerland",
+      "city": "Lausanne",
       "language": "English",
-      "tuition_usd": 0,
-      "duration_months": 24,
-      "field": "both",
-      "url": "https://www.tum.de/",
-      "last_updated": "2024-06-01T21:00:00Z",
-      "description_snippet": "Elite German technical university combining robotics and AI. No tuition for all students.",
-      "application_deadline": "2025-05-31",
-      "entry_requirements": "Engineering or CS degree, strong math background",
-      "scholarship_available": true,
-      "tags": ["free tuition", "elite German", "AI + Robotics"]
-    },
-    {
-      "id": "prog_008",
-      "university": "Politecnico di Milano",
-      "program_name": "MSc in Automation and Control Engineering",
-      "country": "Italy",
-      "city": "Milan",
-      "language": "English",
-      "tuition_usd": 4000,
+      "tuition_usd": 1500,
       "duration_months": 24,
       "field": "robotics",
-      "url": "https://www.polimi.it/",
-      "last_updated": "2024-06-01T22:00:00Z",
-      "description_snippet": "Top Italian technical university with strong automation and robotics focus.",
-      "application_deadline": "2025-01-30",
-      "entry_requirements": "Engineering background, English proficiency",
+      "url": "https://www.epfl.ch/",
+      "last_updated": "2026-06-03T10:05:00.914726",
+      "description_snippet": "Top-tier Swiss technical university with robotics excellence.",
+      "application_deadline": "2024-12-15",
+      "entry_requirements": null,
       "scholarship_available": true,
-      "tags": ["affordable", "Italian design", "automation"]
+      "tags": [
+        "affordable",
+        "two-year",
+        "robotics"
+      ]
+    },
+    {
+      "id": "prog_010",
+      "university": "NUS Singapore",
+      "program_name": "MSc in Robotics",
+      "country": "Singapore",
+      "city": "Singapore",
+      "language": "English",
+      "tuition_usd": 45000,
+      "duration_months": 12,
+      "field": "robotics",
+      "url": "https://www.nus.edu.sg/",
+      "last_updated": "2026-06-03T10:05:00.914729",
+      "description_snippet": "Leading Asian program with industry partnerships.",
+      "application_deadline": "2025-02-28",
+      "entry_requirements": null,
+      "scholarship_available": false,
+      "tags": [
+        "one-year",
+        "robotics"
+      ]
     }
   ],
-  "countries": ["USA", "UK", "Sweden", "Germany", "Italy"],
-  "fields": ["robotics", "ai", "both"],
-  "languages": ["English"],
+  "countries": [
+    "Singapore",
+    "Netherlands",
+    "Switzerland",
+    "UK",
+    "Sweden",
+    "USA"
+  ],
+  "fields": [
+    "robotics",
+    "ai",
+    "both"
+  ],
+  "languages": [
+    "English"
+  ],
   "stats": {
-    "avg_tuition": 29000,
+    "avg_tuition": 30889,
     "median_duration": 24,
-    "scholarship_rate": 0.75,
-    "robotics_programs": 5,
+    "scholarship_rate": 0.4,
+    "robotics_programs": 7,
     "ai_programs": 3,
-    "hybrid_programs": 1
+    "hybrid_programs": 0
   }
 }
