@@ -1,8 +1,8 @@
 {
   "metadata": {
     "version": "1.0.0",
-    "last_updated": "2026-06-03T15:30:03.600045",
-    "total_programs": 10,
+    "last_updated": "2026-06-03T19:46:51.535000",
+    "total_programs": 11,
     "total_countries": 8,
     "data_source": "RAG Pipeline - University Web Scraping"
   },
@@ -18,7 +18,7 @@
       "duration_months": 24,
       "field": "ai",
       "url": "https://cs.stanford.edu/",
-      "last_updated": "2026-06-03T15:28:39.782284",
+      "last_updated": "2026-06-03T19:46:26.907929",
       "description_snippet": "Alumni Spotlight:Kayla Patterson, MS ’24 Computer Science \"I study human-computer interaction (HCI), because I want to understand how to think about people when it comes to developing technology. I’ve taken classes with James Landay, Michael Bernstein, and Christina Wodtke, and they just blew my min",
       "application_deadline": null,
       "entry_requirements": null,
@@ -26,6 +26,27 @@
       "tags": [
         "two-year",
         "artificial intelligence"
+      ]
+    },
+    {
+      "id": "prog_carnegie_mellon_univ",
+      "university": "Carnegie Mellon University",
+      "program_name": "Robotics Institute Carnegie Mellon University : Robotics Education and Research Leader",
+      "country": "USA",
+      "city": "Pittsburgh, PA",
+      "language": "English",
+      "tuition_usd": null,
+      "duration_months": 24,
+      "field": "robotics",
+      "url": "https://www.ri.cmu.edu/",
+      "last_updated": "2026-06-03T19:46:28.538259",
+      "description_snippet": "Since its founding in 1979, the Robotics Institute at Carnegie Mellon University has been leading the world in robotics research and education. The Robotics Institute offers Doctoral and Master's Degrees in robotics, industrial automation and computer vision utilizing advanced artificial intelligenc",
+      "application_deadline": null,
+      "entry_requirements": null,
+      "scholarship_available": null,
+      "tags": [
+        "two-year",
+        "robotics"
       ]
     },
     {
@@ -39,7 +60,7 @@
       "duration_months": 24,
       "field": "robotics",
       "url": "https://rsc.ethz.ch/",
-      "last_updated": "2026-06-03T15:29:12.822506",
+      "last_updated": "2026-06-03T19:46:30.177696",
       "description_snippet": "Talks on innovations in Robotics, Vision, and Control Welcome to the MaP Robotics, Vision, and Controls Talks series hosted by ETH Zürich. These open talks focus on innovations in robotics, computer vision, and control systems, and are held in a hybrid format at ETH Zürich’s main campus. Exceptions ",
       "application_deadline": null,
       "entry_requirements": null,
@@ -61,7 +82,7 @@
       "duration_months": 24,
       "field": "robotics",
       "url": "https://www.tudelft.nl/",
-      "last_updated": "2026-06-03T15:29:14.409018",
+      "last_updated": "2026-06-03T19:46:31.780480",
       "description_snippet": "Top onderwijs- en onderzoek staan centraal bij de oudste en grootste technische universiteit van Nederland. Onze 8 faculteiten bieden 16 bachelor- en meer dan 30 masteropleidingen. Onze ruim 25.000 studenten en 6.000 medewerkers delen een fascinatie voor wetenschap, design en techniek. Onze gezamenl",
       "application_deadline": null,
       "entry_requirements": null,
@@ -82,7 +103,7 @@
       "duration_months": 24,
       "field": "ai",
       "url": "https://www.imperial.ac.uk/",
-      "last_updated": "2026-06-03T15:29:16.176493",
+      "last_updated": "2026-06-03T19:46:33.802358",
       "description_snippet": "Imperial College London is a world-leading university for science, technology, engineering, medicine and business (STEMB). Across our London campuses, and throughout our international network, we use science to tackle global challenges.",
       "application_deadline": null,
       "entry_requirements": null,
@@ -103,7 +124,7 @@
       "duration_months": 24,
       "field": "ai",
       "url": "https://www.ed.ac.uk/",
-      "last_updated": "2026-06-03T15:29:17.339520",
+      "last_updated": "2026-06-03T19:46:34.979354",
       "description_snippet": "The University of Edinburgh, influencing the world since 1583. We are one of the UK's top-rated research universities. Located in Scotland's capital city, one of the liveliest and most beautiful cities in the world.",
       "application_deadline": null,
       "entry_requirements": null,
@@ -111,29 +132,6 @@
       "tags": [
         "two-year",
         "artificial intelligence"
-      ]
-    },
-    {
-      "id": "prog_kth_royal_institute_",
-      "university": "KTH Royal Institute of Technology",
-      "program_name": "Grundforskning till samhällsnytta",
-      "country": "Sweden",
-      "city": "Stockholm",
-      "language": "English",
-      "tuition_usd": 0,
-      "duration_months": 24,
-      "field": "robotics",
-      "url": "https://www.kth.se/",
-      "last_updated": "2026-06-03T15:29:19.077564",
-      "description_snippet": "KTH - Kungliga Tekniska högskolan - är ett av Europas ledande tekniska universitet och samlar studenter, forskare och fakultet från hela världen.",
-      "application_deadline": null,
-      "entry_requirements": null,
-      "scholarship_available": true,
-      "tags": [
-        "free tuition",
-        "two-year",
-        "EU opportunities",
-        "robotics"
       ]
     },
     {
@@ -147,7 +145,7 @@
       "duration_months": 24,
       "field": "robotics",
       "url": "https://www.epfl.ch/",
-      "last_updated": "2026-06-03T15:29:20.462155",
+      "last_updated": "2026-06-03T19:46:38.311863",
       "description_snippet": "Basée à Lausanne, L’EPFL est une université dont les trois missions sont l’éducation, la recherche et l’innovation.",
       "application_deadline": null,
       "entry_requirements": null,
@@ -169,7 +167,7 @@
       "duration_months": 24,
       "field": "robotics",
       "url": "https://www.nus.edu.sg/",
-      "last_updated": "2026-06-03T15:29:23.492358",
+      "last_updated": "2026-06-03T19:46:41.362292",
       "description_snippet": "National University of Singapore is ranked consistently as one of the world's top universities. We offer the most extensive college degree courses in Singapore.",
       "application_deadline": null,
       "entry_requirements": null,
@@ -190,7 +188,7 @@
       "duration_months": 24,
       "field": "both",
       "url": "https://www.tum.de/",
-      "last_updated": "2026-06-03T15:29:26.603335",
+      "last_updated": "2026-06-03T19:46:44.540020",
       "description_snippet": "Technische Universität München: Eine der führenden deutschen Universitäten für Forschung und Lehre in Natur und Ingenieurwissenschaften.",
       "application_deadline": null,
       "entry_requirements": null,
@@ -213,7 +211,7 @@
       "duration_months": 24,
       "field": "robotics",
       "url": "https://www.polimi.it/",
-      "last_updated": "2026-06-03T15:29:28.492953",
+      "last_updated": "2026-06-03T19:46:46.441565",
       "description_snippet": "Politecnico di Milano, dal 1863, il più grande ateneo scientifico-tecnologico italiano, tra rigore scientifico e creatività",
       "application_deadline": null,
       "entry_requirements": null,
@@ -222,17 +220,38 @@
         "two-year",
         "robotics"
       ]
+    },
+    {
+      "id": "prog_kaist",
+      "university": "KAIST",
+      "program_name": "MSc in Artificial Intelligence - KAIST",
+      "country": "South Korea",
+      "city": "Daejeon",
+      "language": "English",
+      "tuition_usd": null,
+      "duration_months": 24,
+      "field": "ai",
+      "url": "https://www.kaist.ac.kr/",
+      "last_updated": "2026-06-03T19:46:48.530865",
+      "description_snippet": "Program description not available",
+      "application_deadline": null,
+      "entry_requirements": null,
+      "scholarship_available": null,
+      "tags": [
+        "two-year",
+        "artificial intelligence"
+      ]
     }
   ],
   "countries": [
-    "UK",
     "Netherlands",
-    "Switzerland",
-    "Sweden",
-    "USA",
-    "Germany",
+    "UK",
     "Italy",
-    "Singapore"
+    "USA",
+    "Singapore",
+    "South Korea",
+    "Germany",
+    "Switzerland"
   ],
   "fields": [
     "robotics",
@@ -240,15 +259,15 @@
     "both"
   ],
   "languages": [
-    "German",
-    "English"
+    "English",
+    "German"
   ],
   "stats": {
     "avg_tuition": 1500,
     "median_duration": 24,
-    "scholarship_rate": 0.4,
+    "scholarship_rate": 0.2727272727272727,
     "robotics_programs": 7,
-    "ai_programs": 4,
+    "ai_programs": 5,
     "hybrid_programs": 1
   }
 }
