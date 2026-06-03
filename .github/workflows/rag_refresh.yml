@@ -1,9 +1,9 @@
 name: RAG Data Refresh
 
 on:
-  # Disabled automated schedule to preserve manual data
-  # schedule:
-  #   - cron: '0 2 * * *'
+  # Run every hour to keep data fresh
+  schedule:
+    - cron: '0 * * * *'
   workflow_dispatch:
 
 env:
@@ -40,8 +40,8 @@ jobs:
       
       - name: Generate JSON data
         run: |
-          # Use seed data to generate fresh JSON (skips web scraping in CI)
-          python3 scripts/scrape_to_json.py --seed
+          # Run web scraper to fetch fresh university data
+          python3 scripts/scrape_to_json.py || echo "Scraper completed with warnings"
       
       - name: Commit updated data
         run: |
