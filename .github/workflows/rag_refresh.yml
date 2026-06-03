@@ -1,9 +1,9 @@
 name: RAG Data Refresh
 
 on:
-  schedule:
-    # Run daily at 02:00 UTC
-    - cron: '0 2 * * *'
+  # Disabled automated schedule to preserve manual data
+  # schedule:
+  #   - cron: '0 2 * * *'
   workflow_dispatch:
 
 env:
