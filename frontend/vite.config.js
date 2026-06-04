@@ -5,7 +5,7 @@ import path from 'path'
 import { copyFileSync, mkdirSync } from 'fs'
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command }) => ({
+export default defineConfig(() => ({
   plugins: [
     react(),
     {

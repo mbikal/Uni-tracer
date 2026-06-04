@@ -1,4 +1,4 @@
-import { X, GraduationCap, Target, Calendar, CheckCircle, DollarSign, FileText, Award, Globe, MapPin, Clock, Bot, Brain, ExternalLink, BookOpen, Users, Lightbulb } from 'lucide-react'
+import { X, GraduationCap, Target, Calendar, CheckCircle, DollarSign, FileText, Award, Clock, Bot, Brain, ExternalLink, BookOpen, Lightbulb } from 'lucide-react'
 
 export function ProgramDetailModal({ program, onClose }) {
   if (!program) return null
@@ -23,9 +23,6 @@ export function ProgramDetailModal({ program, onClose }) {
 
   // Generate acceptance roadmap based on program data
   const generateRoadmap = () => {
-    const today = new Date()
-    const deadline = program.application_deadline ? new Date(program.application_deadline) : null
-    
     const steps = [
       {
         phase: 'Preparation',
@@ -127,18 +124,6 @@ export function ProgramDetailModal({ program, onClose }) {
     return baseScholarships
   }
 
-  const getGovernmentScholarshipLink = (country) => {
-    const links = {
-      'Germany': 'https://www.daad.de/en/',
-      'UK': 'https://www.chevening.org/',
-      'USA': 'https://educationusa.state.gov/',
-      'Spain': 'https://www.mecd.gob.es/',
-      'Austria': 'https://grants.at/',
-      'Italy': 'https://www.studiare-in-italia.it/',
-      'Sweden': 'https://si.se/en/'
-    }
-    return links[country] || program.url
-  }
 
   const roadmap = generateRoadmap()
   const scholarships = generateScholarships()
@@ -359,19 +344,6 @@ export function ProgramDetailModal({ program, onClose }) {
       </div>
     </div>
   )
-}
-
-function getGovernmentScholarshipLink(country) {
-  const links = {
-    'Germany': 'https://www.daad.de/en/',
-    'UK': 'https://www.chevening.org/',
-    'USA': 'https://educationusa.state.gov/',
-    'Spain': 'https://www.mecd.gob.es/',
-    'Austria': 'https://grants.at/',
-    'Italy': 'https://www.studiare-in-italia.it/',
-    'Sweden': 'https://si.se/en/'
-  }
-  return links[country] || '#'
 }
 
 export default ProgramDetailModal
