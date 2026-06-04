@@ -21,6 +21,19 @@ export function ProgramDetailModal({ program, onClose }) {
     return `$${tuition.toLocaleString()}/year`
   }
 
+  const getGovernmentScholarshipLink = (country) => {
+    const links = {
+      'Germany': 'https://www.daad.de/en/',
+      'UK': 'https://www.chevening.org/',
+      'USA': 'https://educationusa.state.gov/',
+      'Spain': 'https://www.mecd.gob.es/',
+      'Austria': 'https://grants.at/',
+      'Italy': 'https://www.studiare-in-italia.it/',
+      'Sweden': 'https://si.se/en/'
+    }
+    return links[country] || program.url
+  }
+
   // Generate acceptance roadmap based on program data
   const generateRoadmap = () => {
     const steps = [
